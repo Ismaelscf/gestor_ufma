@@ -78,6 +78,21 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'contas' => [
+            'driver' => 'pgsql',
+            // 'url' => env('DATABASE_URL'),
+            'host' => 'localhost',
+            'port' => '5432',
+            'database' => 'checkout',
+            'username' => 'postgres',
+            'password' => 'mael007',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
