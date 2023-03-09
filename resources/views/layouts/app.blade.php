@@ -42,15 +42,15 @@
                              alt="User Image">
                         <p>
                             {{ Auth::user()->name }}
-                            <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                            <small>Membro desde {{ Auth::user()->created_at->format('M. Y') }}</small>
                         </p>
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
                         <a href="#" class="btn btn-default btn-flat float-right"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Sign out
+                            Sair
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -72,10 +72,9 @@
     <!-- Main Footer -->
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.5
+            <b>Versão</b> 1.1
         </div>
-        <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-        reserved.
+        <strong>Copyright &copy; 2023 <a href="">UFMA</a>.</strong> Todos os direitos Reservados
     </footer>
 </div>
 

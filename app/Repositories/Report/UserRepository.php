@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Repositories;
-use App\Models\User;
+namespace App\Repositories\Report;
+use App\Models\Contas\UserContas;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -12,15 +12,21 @@ class UserRepository
 {
     protected $user;
 
-    public function __construct(User $user)
+    public function __construct(UserContas $user)
     {
         $this->user = $user;
     }
 
     public function getAll(){
-        $users = User::all();
+        $users = UserContas::all();
 
         return $users;
+    }
+
+    public function nUsers(){
+        $nUsers = UserContas::count();
+
+        return $nUsers;
     }
 
 }

@@ -1,7 +1,7 @@
 $(function () {
 $("#dataTable").DataTable({
     "responsive": true, "lengthChange": true, "autoWidth": false,
-    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+    "buttons": ["copy", "csv", "excel", "pdf", "print"],
     "language": {
         "lengthMenu": "Exibir _MENU_ resultados por página",
         "emptyTable": "Nenhum registro encontrado",

@@ -23,6 +23,7 @@
                                 <form action="" method="post" id="form">
                                     <div class="row">
                                         @csrf
+                                        @include('report.includes.dataTable')
                                         <!-- <div class="d-flex align-items-start gap-3 mt-4">
                                             <button type="submit" class="btn btn-success">Gerar PDF</button>
                                         </div> -->
@@ -104,19 +105,19 @@
             colorByPoint: true,
             data: [{
             name: '<?php  
-                echo count($users);
+                echo $nUsers;
                 ?> usuários finalizaram o Processo',
             y: <?php  
-                echo count($users);
+                echo $nUsers;
                 ?>,
             sliced: true,
             selected: true
             },  {
             name: '<?php  
-                echo (count($users));
+                echo $nUsersRegistered;
                 ?> usuários não finalizaram',
             y: <?php  
-                echo (count($users));
+                echo $nUsersRegistered;
                 ?>
             }]
         }]

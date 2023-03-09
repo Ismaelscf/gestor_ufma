@@ -24,7 +24,7 @@
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
+            <p class="login-box-msg">Esqueceu sua senha? Você pode recuperar seu acesso.</p>
 
             @if (session('status'))
                 <div class="alert alert-success">
@@ -50,7 +50,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Send Password Reset Link</button>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar Link para email</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -60,7 +60,7 @@
                 <a href="{{ route("login") }}">Login</a>
             </p>
             <p class="mb-0">
-                <a href="{{ route("register") }}" class="text-center">Register a new membership</a>
+                <a href="{{ route("register") }}" class="text-center">Cadastrar Novo Usuário</a>
             </p>
         </div>
         <!-- /.login-card-body -->

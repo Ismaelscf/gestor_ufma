@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($users as $user)
+        @foreach($userContas as $user)
         <tr>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>

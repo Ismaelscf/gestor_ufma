@@ -2,7 +2,7 @@
 
 namespace App\Services\Report;
 
-use App\Repositories\UserRepository;
+use App\Repositories\Report\UserRepository;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -19,6 +19,12 @@ class UserService
 
     public function getAll(){
         $users = $this->userRepository->getAll();
+
+        return $users;
+    }
+
+    public function nUsers(){
+        $users = $this->userRepository->nUsers();
 
         return $users;
     }
