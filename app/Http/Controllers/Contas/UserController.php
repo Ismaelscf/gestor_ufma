@@ -21,13 +21,11 @@ class UserController extends Controller
 
 
     public function index(){
-        $nUsers = $this->userService->nUsers();
         $nUsersRegistered = $this->customerService->getNumberUsersRegistered();
+        $nUsersUnregistered = $this->customerService->getNumberUsersUnregistered();
+        $userContas = $this->customerService->getAll();
 
-        $userContas = $this->userService->getAll();
-        $usersRegistered = $this->customerService->getAllUsersRegistered();
 
-        // dd($userContas[0]->customer->orders);
-        return view('report.index', compact('nUsers', 'nUsersRegistered', 'userContas', 'usersRegistered'));
+        return view('report.index', compact('nUsersRegistered', 'nUsersUnregistered', 'userContas'));
     }
 }

@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
+use PhpParser\Node\Expr\FuncCall;
 
 class CustomerService
 {
@@ -17,7 +18,12 @@ class CustomerService
         $this->customerRepository = $customerRepository;
     }
 
-    
+    public function getAll(){
+        $users = $this->customerRepository->getAll();
+
+        return $users;
+    }
+
     public function getAllUsersRegistered(){
         $users = $this->customerRepository->getAllUsersRegistered();
 
@@ -26,6 +32,12 @@ class CustomerService
 
     public function getNumberUsersRegistered(){
         $users = $this->customerRepository->getNumberUsersRegistered();
+
+        return $users;
+    }
+
+    public function getNumberUsersUnregistered(){
+        $users = $this->customerRepository->getNumberUsersUnregistered();
 
         return $users;
     }
