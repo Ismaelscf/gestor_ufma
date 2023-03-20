@@ -21,7 +21,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/users', [App\Http\Controllers\Contas\UserController::class, 'index'])->name('user.index');
+
+    // Route::get('users', [App\Http\Controllers\Contas\UserController::class, 'teste'])->name('user.teste');
+    Route::get('users/data', [App\Http\Controllers\Contas\UserController::class, 'getData'])->name('user.data');
 });
+
 
 
 Auth::routes();

@@ -24,8 +24,23 @@ class UserController extends Controller
         $nUsersRegistered = $this->customerService->getNumberUsersRegistered();
         $nUsersUnregistered = $this->customerService->getNumberUsersUnregistered();
         $userContas = $this->customerService->getAll();
+        // $data = $this->customerService->getAll();
+
+        // dd($userContas);
 
 
         return view('report.index', compact('nUsersRegistered', 'nUsersUnregistered', 'userContas'));
+    }
+
+    public function teste()
+    {
+        $data = UserContas::select('*')->get();
+        return view('report.teste', compact('data'));
+    }
+
+    public function getData()
+    {
+        $userContas = $this->customerService->getAll();
+        return datatables()->of($userContas)->make(true);
     }
 }

@@ -45,6 +45,80 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#users-table').DataTable({
+                "responsive": true, "lengthChange": true, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                "language": {
+        "lengthMenu": "Exibir _MENU_ resultados por página",
+        "emptyTable": "Nenhum registro encontrado",
+        "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        "infoEmpty": "Mostrando 0 até 0 de 0 registros",
+        "infoFiltered": "(Filtrados de _MAX_ registros)",
+        "infoThousands": ".",
+        "loadingRecords": "Carregando...",
+        "processing": "Processando...",
+        "zeroRecords": "Nenhum registro encontrado",
+        "search": "Pesquisar",
+        "paginate": {
+            "next": "Próximo",
+            "previous": "Anterior",
+            "first": "Primeiro",
+            "last": "Último"
+        },
+        "aria": {
+            "sortAscending": ": Ordenar colunas de forma ascendente",
+            "sortDescending": ": Ordenar colunas de forma descendente"
+        },
+        "buttons": {
+            "copySuccess": {
+                "1": "Uma linha copiada com sucesso",
+                "_": "%d linhas copiadas com sucesso"
+            },
+            "collection": "Coleção  <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"><\/span>",
+            "colvis": "Visibilidade da Coluna",
+            "colvisRestore": "Restaurar Visibilidade",
+            "copy": "Copiar",
+            "copyKeys": "Pressione ctrl ou u2318 + C para copiar os dados da tabela para a área de transferência do sistema. Para cancelar, clique nesta mensagem ou pressione Esc..",
+            "copyTitle": "Copiar para a Área de Transferência",
+            "csv": "CSV",
+            "excel": "Excel",
+            "pageLength": {
+                "-1": "Mostrar todos os registros",
+                "_": "Mostrar %d registros"
+            },
+            "pdf": "PDF",
+            "print": "Imprimir"
+        },
+        // url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json'
+    },
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('user.data') }}',
+                columns: [
+                    { data: 'cst_name', name: 'cst_name' },
+                    { data: 'cst_email', name: 'cst_email' },
+                    { 
+                        data: 'has_orders', 
+                        name: 'has_orders',
+                        render: function(data) {
+                            if (data == 1) {
+                                return 'Matriculado';
+                            } else {
+                                return 'Não Matriculado';
+                            }
+                    }
+                }
+                ]
+                
+            });
+        });
+    </script>
+
     <script>
         // Data retrieved from https://netmarketshare.com/
         // Build the chart

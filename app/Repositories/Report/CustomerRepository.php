@@ -20,9 +20,9 @@ class CustomerRepository
     public function getAll(){
         $users = Customer::select('customers.*', \DB::raw('COUNT(orders.ord_id) AS has_orders'))
         ->leftJoin('orders', 'customers.cst_id', '=', 'orders.ord_cst_id')
-        ->groupBy('customers.cst_id')
-        ->orderBy('customers.cst_name')
-        ->get();
+        ->groupBy('customers.cst_id');
+        // ->orderBy('customers.cst_name');
+        // ->get();
 
         return $users;
     }
