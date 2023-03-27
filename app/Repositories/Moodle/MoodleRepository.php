@@ -33,6 +33,20 @@ class MoodleRepository
 
     }
 
+    public function getNumberAprovadosR1M1(){
+        $number = DB::connection('moodle')
+            ->table('mdl_quiz_attempts as qa')
+            ->join('mdl_user as u', 'qa.userid', '=', 'u.id')
+            ->select('qa.userid as user_id', 'u.username', 'u.email', 'u.city', 'u.firstname', 'u.lastname', DB::raw('MAX(qa.sumgrades) as highest_grade'), DB::raw("'Aprovado' as status"))
+            ->where('qa.quiz', 16)
+            ->groupBy('qa.userid')
+            ->havingRaw('MAX(qa.sumgrades) >= 70')
+            ->count();
+
+        return $number;
+
+    }
+
     public function getNumberReprovados(){
         // dd($course, $quiz);
 
@@ -45,6 +59,28 @@ class MoodleRepository
                 $query->select('qa2.userid')
                       ->from('mdl_quiz_attempts as qa2')
                       ->where('qa2.quiz', 12)
+                      ->where('qa2.sumgrades', '>=', 70)
+                      ->groupBy('qa2.userid');
+            })
+            ->groupBy('qa.userid')
+            ->havingRaw('highest_grade < 70')
+            ->count();
+
+        return $users;
+    }
+
+    public function getNumberReprovadosR1M1(){
+        // dd($course, $quiz);
+
+        $users = DB::connection('moodle')
+            ->table('mdl_quiz_attempts as qa')
+            ->join('mdl_user as u', 'qa.userid', '=', 'u.id')
+            ->select('qa.userid as user_id', 'u.username', 'u.email', 'u.city', 'u.firstname', 'u.lastname', DB::raw('MAX(qa.sumgrades) as highest_grade'), DB::raw("'Reprovado' as status"))
+            ->where('qa.quiz', 16)
+            ->whereNotIn('qa.userid', function ($query) {
+                $query->select('qa2.userid')
+                      ->from('mdl_quiz_attempts as qa2')
+                      ->where('qa2.quiz', 16)
                       ->where('qa2.sumgrades', '>=', 70)
                       ->groupBy('qa2.userid');
             })
@@ -84,6 +120,20 @@ class MoodleRepository
         return $users;
     }
 
+    public function getAprovadosR1M1(){
+        // dd($course, $quiz);
+
+        $users = DB::connection('moodle')
+            ->table('mdl_quiz_attempts as qa')
+            ->join('mdl_user as u', 'qa.userid', '=', 'u.id')
+            ->select('qa.userid as user_id', 'u.username', 'u.email', 'u.city', 'u.firstname', 'u.lastname', DB::raw('MAX(qa.sumgrades) as highest_grade'), DB::raw("'Aprovado' as status"))
+            ->where('qa.quiz', 16)
+            ->groupBy('qa.userid')
+            ->havingRaw('MAX(qa.sumgrades) >= 70');
+
+        return $users;
+    }
+
     public function getReprovados(){
         // dd($course, $quiz);
 
@@ -96,6 +146,27 @@ class MoodleRepository
                 $query->select('qa2.userid')
                       ->from('mdl_quiz_attempts as qa2')
                       ->where('qa2.quiz', 12)
+                      ->where('qa2.sumgrades', '>=', 70)
+                      ->groupBy('qa2.userid');
+            })
+            ->groupBy('qa.userid')
+            ->havingRaw('highest_grade < 70');
+
+        return $users;
+    }
+
+    public function getReprovadosR1M1(){
+        // dd($course, $quiz);
+
+        $users = DB::connection('moodle')
+            ->table('mdl_quiz_attempts as qa')
+            ->join('mdl_user as u', 'qa.userid', '=', 'u.id')
+            ->select('qa.userid as user_id', 'u.username', 'u.email', 'u.city', 'u.firstname', 'u.lastname', DB::raw('MAX(qa.sumgrades) as highest_grade'), DB::raw("'Reprovado' as status"))
+            ->where('qa.quiz', 16)
+            ->whereNotIn('qa.userid', function ($query) {
+                $query->select('qa2.userid')
+                      ->from('mdl_quiz_attempts as qa2')
+                      ->where('qa2.quiz', 16)
                       ->where('qa2.sumgrades', '>=', 70)
                       ->groupBy('qa2.userid');
             })

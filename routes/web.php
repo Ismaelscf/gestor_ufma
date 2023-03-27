@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/users', [App\Http\Controllers\Contas\UserController::class, 'index'])->name('user.index');
@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('aprovadosForpres', [App\Http\Controllers\Reports\ReportController::class, 'aprovadosForpres'])->name('aprovadosForpres');
     Route::get('reprovadosForpres', [App\Http\Controllers\Reports\ReportController::class, 'reprovadosForpres'])->name('reprovadosForpres');
     Route::get('nAcessaramQ1Forpres', [App\Http\Controllers\Reports\ReportController::class, 'nAcessaramQ1Forpres'])->name('nAcessaramQ1Forpres');
+    Route::get('aprovadosR1M1Forpres', [App\Http\Controllers\Reports\ReportController::class, 'aprovadosR1M1Forpres'])->name('aprovadosR1M1Forpres');
+    Route::get('reprovadosR1M1Forpres', [App\Http\Controllers\Reports\ReportController::class, 'reprovadosR1M1Forpres'])->name('reprovadosR1M1Forpres');
 });
 
 

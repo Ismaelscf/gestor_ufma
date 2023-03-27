@@ -24,6 +24,12 @@ class MoodleService
         return $users;
     }
 
+    public function getNumberAprovadosR1M1(){
+        $users = $this->moodleRepository->getNumberAprovadosR1M1();
+
+        return $users;
+    }
+
     public function getNumberAprovados(){
         $users = $this->moodleRepository->getNumberAprovados();
 
@@ -32,6 +38,12 @@ class MoodleService
 
     public function getNumberReprovados(){
         $users = $this->moodleRepository->getNumberReprovados();
+
+        return $users;
+    }
+    
+    public function getNumberReprovadosR1M1(){
+        $users = $this->moodleRepository->getNumberReprovadosR1M1();
 
         return $users;
     }
@@ -50,6 +62,18 @@ class MoodleService
 
     public function getReprovados(){
         $users = $this->moodleRepository->getReprovados();
+
+        return $users;
+    }
+
+    public function getAprovadosR1M1(){
+        $users = $this->moodleRepository->getAprovadosR1M1();
+
+        return $users;
+    }
+
+    public function getReprovadosR1M1(){
+        $users = $this->moodleRepository->getReprovadosR1M1();
 
         return $users;
     }

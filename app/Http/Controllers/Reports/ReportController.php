@@ -57,14 +57,14 @@ class ReportController extends Controller
 
             case 4:
                 if($request->course == 6)
-                    dd('1');
+                    return redirect('/report/'.$request->course.'/'.$request->report.'/16');
                 else
                     dd('2');
                 break;
 
             case 5:
                 if($request->course == 6)
-                    dd('1');
+                    return redirect('/report/'.$request->course.'/'.$request->report.'/16');
                 else
                     dd('2');
                 break;
@@ -131,6 +131,20 @@ class ReportController extends Controller
 
                 return view('report.moodle.nAcessaramQ1Forpres', compact('dados'));
                 break;
+
+            case 4:
+                $dados['aprovados'] = $this->moodleService->getNumberAprovadosR1M1();
+                $dados = json_decode (json_encode ($dados), FALSE);
+
+                return view('report.moodle.aprovadosR1M1Forpres', compact('dados'));
+                break;
+
+            case 5:
+                $dados['reprovados'] = $this->moodleService->getNumberReprovadosR1M1();
+                $dados = json_decode (json_encode ($dados), FALSE);
+
+                return view('report.moodle.reprovadosR1M1Forpres', compact('dados'));
+                break;
         }
 
     }
@@ -141,9 +155,21 @@ class ReportController extends Controller
         return datatables()->of($users)->make(true);
     }
 
+    public function aprovadosR1M1Forpres()
+    {
+        $users = $this->moodleService->getAprovadosR1M1();
+        return datatables()->of($users)->make(true);
+    }
+
     public function reprovadosForpres()
     {
         $users = $this->moodleService->getReprovados();
+        return datatables()->of($users)->make(true);
+    }
+
+    public function reprovadosR1M1Forpres()
+    {
+        $users = $this->moodleService->getReprovadosR1M1();
         return datatables()->of($users)->make(true);
     }
 
