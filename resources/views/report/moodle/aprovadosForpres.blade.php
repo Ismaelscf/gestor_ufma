@@ -3,29 +3,31 @@
 
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-6 col-xs-6">
-            
-            <div class="small-box bg-blue">
-                <div class="inner">
-                    <h3>{{ $dados->users }}</h3>
-                    <p>Usuários cadastrados no sistema</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-person-add"></i>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-xs-6">
+                
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                        <h3>{{ $dados->users }}</h3>
+                        <p>Usuários cadastrados no sistema</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="col-lg-6 col-xs-6">
-        
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3>{{ $dados->aprovados }}</h3>
-                    <p>Usuários Aprovados - Atividade Avaliativa do Módulo 1</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-person-add"></i>
+            
+            <div class="col-lg-6 col-xs-6">
+            
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>{{ $dados->aprovados }}</h3>
+                        <p>Usuários Aprovados - Atividade Avaliativa do Módulo 1</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
                 </div>
             </div>
         </div>
