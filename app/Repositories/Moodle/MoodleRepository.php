@@ -120,6 +120,19 @@ class MoodleRepository
         return $users;
     }
 
+    public function getAprovadosExport(){
+        $users = DB::connection('moodle')
+            ->table('mdl_quiz_attempts as qa')
+            ->join('mdl_user as u', 'qa.userid', '=', 'u.id')
+            ->select('qa.userid as user_id', 'u.username', 'u.email', 'u.city', 'u.firstname', 'u.lastname', DB::raw('MAX(qa.sumgrades) as highest_grade'), DB::raw("'Aprovado' as status"))
+            ->where('qa.quiz', 12)
+            ->groupBy('qa.userid')
+            ->havingRaw('MAX(qa.sumgrades) >= 70')
+            ->get();
+
+        return $users;
+    }
+
     public function getAprovadosR1M1(){
         // dd($course, $quiz);
 

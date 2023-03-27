@@ -41,9 +41,7 @@
                         <div class="card">
                             <div class="row">
                                 @include('report.includes.moodle')
-                                <!-- <div class="d-flex align-items-start gap-3 mt-4">
-                                    <button type="submit" class="btn btn-success">Gerar PDF</button>
-                                </div> -->
+                                <a href="{{Request::url()}}/PDF" target="_blank" class="btn btn-info">Pdf</a>
                             </div>
                         </div>
                     </div>

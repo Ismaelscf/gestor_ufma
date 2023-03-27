@@ -60,6 +60,12 @@ class MoodleService
         return $users;
     }
 
+    public function getAprovadosExport(){
+        $users = $this->moodleRepository->getAprovadosExport();
+
+        return $users;
+    }
+
     public function getReprovados(){
         $users = $this->moodleRepository->getReprovados();
 

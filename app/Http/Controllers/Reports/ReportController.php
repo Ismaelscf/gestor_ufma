@@ -8,6 +8,7 @@ use App\Services\Report\UserService;
 use App\Services\Report\CustomerService;
 Use App\Services\Moodle\MoodleService;
 use App\Models\Contas\UserContas;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportController extends Controller
 {
@@ -107,15 +108,20 @@ class ReportController extends Controller
 
     }
 
-    public function report($course, $report, $quiz){
+    public function report($course, $report, $quiz, $relatorio = null){
         $dados['users'] = $this->moodleService->getNumberUsers();
 
         switch ($report) {
             case 1:
+                $export = $this->moodleService->getAprovadosExport();
                 $dados['aprovados'] = $this->moodleService->getNumberAprovados();
                 $dados = json_decode (json_encode ($dados), FALSE);
 
-                return view('report.moodle.aprovadosForpres', compact('dados'));
+                if($relatorio == 'PDF'){
+                    $this->exportPdf($export);
+                }
+
+                return view('report.moodle.aprovadosForpres', compact('dados', 'export'));
                 break;
 
             case 2:
@@ -149,14 +155,12 @@ class ReportController extends Controller
 
     }
 
-    public function aprovadosForpres()
-    {
+    public function aprovadosForpres(){
         $users = $this->moodleService->getAprovados();
         return datatables()->of($users)->make(true);
     }
 
-    public function aprovadosR1M1Forpres()
-    {
+    public function aprovadosR1M1Forpres(){
         $users = $this->moodleService->getAprovadosR1M1();
         return datatables()->of($users)->make(true);
     }
@@ -177,5 +181,10 @@ class ReportController extends Controller
     {
         $users = $this->moodleService->nAcessaramQ1Forpres();
         return datatables()->of($users)->make(true);
+    }
+
+    public function exportPdf($dados){
+        // dd($dados);
+        return Pdf::loadView('report.includes.pdf', ['dados' => $dados])->download('reports.pdf');
     }
 }
