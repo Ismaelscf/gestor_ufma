@@ -3,48 +3,51 @@
 
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-xs-6">
-                
-                <div class="small-box bg-blue">
-                    <div class="inner">
-                        <h3>{{ $dados->users }}</h3>
-                        <p>Usuários cadastrados no sistema</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-6 col-xs-6">
-            
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>{{ $dados->nAcessaram }}</h3>
-                        <p>Usuários que não acessaram - Atividade Avaliativa do Módulo 1</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
     <div class="col-md-12">
         <div class="card card-animate">
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="row">
-                                @include('report.includes.moodle')
-                                <!-- <div class="d-flex align-items-start gap-3 mt-4">
-                                    <button type="submit" class="btn btn-success">Gerar PDF</button>
-                                </div> -->
+                            <div class="card-header m-0 p-2 bg-light">
+                                <h4 class="text-success m-0">Relatório usuários que não acessaram - Atividade Avaliativa do Módulo 1</h4>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-xs-6">
+                                        
+                                        <div class="small-box bg-blue">
+                                            <div class="inner">
+                                                <h3>{{ $dados->users }}</h3>
+                                                <p>Usuários cadastrados no sistema</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-person-add"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-xs-6">
+                                    
+                                        <div class="small-box bg-green">
+                                            <div class="inner">
+                                                <h3>{{ $dados->nAcessaram }}</h3>
+                                                <p>Usuários que não acessaram - Atividade Avaliativa do Módulo 1</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-person-add"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    @include('report.includes.moodle')
+                                    <!-- <div class="d-flex align-items-start gap-3 mt-4">
+                                        <button type="submit" class="btn btn-success">Gerar PDF</button>
+                                    </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>

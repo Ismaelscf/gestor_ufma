@@ -24,11 +24,23 @@ class ReportController extends Controller
 
 
     public function index(){
-        return view('report.reports');
+        $nUsersRegistered = $this->customerService->getNumberUsersRegistered();
+        $nUsersUnregistered = $this->customerService->getNumberUsersUnregistered();
+        $userContas = $this->customerService->getAll();
+
+        $dados['users'] = $this->moodleService->getNumberUsers();
+        $dados['aprovadosA1'] = $this->moodleService->getNumberAprovados();
+        $dados['reprovadosA1'] = $this->moodleService->getNumberReprovados();
+        $dados['nAcessaram'] = $this->moodleService->getNumberNAcessaram();
+        $dados['aprovadosR1'] = $this->moodleService->getNumberAprovadosR1M1();
+        $dados['reprovadosR1'] = $this->moodleService->getNumberReprovadosR1M1();
+
+        $dados = json_decode (json_encode ($dados), FALSE);
+
+        return view('report.reports', compact('nUsersRegistered', 'nUsersUnregistered', 'userContas', 'dados'));
     }
 
     public function reports(Request $request){
-        // dd($request->all());
         switch ($request->report) {
             case 99:
                 return redirect('/users');
@@ -104,7 +116,6 @@ class ReportController extends Controller
                     dd('2');
                 break;
         }
-
     }
 
     public function report($course, $report, $quiz){

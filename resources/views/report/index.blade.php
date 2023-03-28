@@ -10,7 +10,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header m-0 p-2 bg-light">
-                                <h4 class="text-success m-0">Relatórios</h4>
+                                <h4 class="text-success m-0">Relatório - Relação de usuários do Contas</h4>
                             </div>
                             <div class="card-body">
                                 <figure class="highcharts-figure">
